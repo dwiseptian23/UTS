@@ -9,19 +9,15 @@ public class GithubUser {
     private String avatarUrl;
     private String name;
     private String bio;
-
     public String getUsername() {
         return username;
     }
-
     public String getAvatarUrl() {
         return avatarUrl;
     }
-
     public String getName() {
         return name;
     }
-
     public String getBio() {
         return bio;
     }

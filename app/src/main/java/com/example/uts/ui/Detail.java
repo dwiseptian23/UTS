@@ -1,35 +1,28 @@
 package com.example.uts.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.uts.data.response.GithubUser;
 import com.example.uts.data.retrofit.ApiConfig;
 import com.example.uts.data.retrofit.ApiService;
 import com.example.uts_pb.R;
 import com.squareup.picasso.Picasso;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Detail extends AppCompatActivity {
-
     private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
-
         progressBar = findViewById(R.id.progressBar);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             String username = extras.getString("username");
@@ -40,7 +33,6 @@ public class Detail extends AppCompatActivity {
             TextView textView2 = findViewById(R.id.username);
             TextView textView3 = findViewById(R.id.bio);
             ImageView imageView = findViewById(R.id.gambar);
-
             showLoading(true);
             userCall.enqueue(new Callback<GithubUser>() {
                 @Override
@@ -53,7 +45,6 @@ public class Detail extends AppCompatActivity {
                             String usernames = "USER NAME : " + user.getUsername();
                             String bio = "BIO : " + user.getBio();
                             String gambar = user.getAvatarUrl();
-
                             textView.setText(name);
                             textView2.setText(usernames);
                             textView3.setText(bio);
@@ -63,7 +54,6 @@ public class Detail extends AppCompatActivity {
                         }
                     }
                 }
-
                 @Override
                 public void onFailure(Call<GithubUser> call, Throwable t) {
                     Toast.makeText(Detail.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -71,7 +61,6 @@ public class Detail extends AppCompatActivity {
             });
         }
     }
-
     private void showLoading(Boolean isLoading) {
         if (isLoading) {
             progressBar.setVisibility(View.VISIBLE);
